@@ -634,41 +634,41 @@ body {
 						<div class="modal-body">
 							<form id="questionForm">
 								<div class="form-group">
-									<label for="phone">Your Phone Number</label>
-									<input type="text" class="form-control" id="phone" placeholder="Enter your phone number" required>
+									<label for="phone">Your Mobile Number</label>
+									<input type="text" class="form-control" id="phone" placeholder="Enter your mobile number" required>
 								</div>
 								<div class="form-group">
-									<label for="message">Your Message</label>
-									<textarea class="form-control" id="message" rows="3" placeholder="Type your question here" required></textarea>
+									<label for="question">Your Question</label>
+									<textarea class="form-control" id="question" rows="3" placeholder="Type your question here" required></textarea>
 								</div>
 							</form>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" id="sendQuestion">Send via WhatsApp</button>
+							<a id="sendToWhatsApp" class="btn btn-primary" target="_blank">Send via WhatsApp</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			
 			<script>
-				document.getElementById('sendQuestion').onclick = function() {
+				document.getElementById('sendToWhatsApp').onclick = function(event) {
+					event.preventDefault();
+			
 					var phone = document.getElementById('phone').value;
-					var message = document.getElementById('message').value;
+					var question = document.getElementById('question').value;
 			
-					// Ensure the phone number includes the country code (e.g., 91 for India)
-					var fullPhoneNumber = '91' + phone; // Change '91' to your actual country code if different
+					// Format the WhatsApp message
+					var whatsappMessage = "Mobile Number: " + phone + "%0AQuestion: " + question;
 			
-					// Create the WhatsApp link
-					var whatsappLink = 'https://api.whatsapp.com/send?phone=' + fullPhoneNumber + '&text=' + encodeURIComponent('From: ' + phone + '\n' + message);
+					// Create the WhatsApp link with your number
+					var whatsappLink = "https://api.whatsapp.com/send?phone=916300293068&text=" + encodeURIComponent(whatsappMessage);
 			
-					// Open WhatsApp in a new tab
-					window.open(whatsappLink, '_blank');
-			
-					// Reset the form and hide the modal
-					document.getElementById('questionForm').reset();
-					$('#questionModal').modal('hide');
+					// Set the link to open WhatsApp with the prefilled message
+					document.getElementById('sendToWhatsApp').href = whatsappLink;
 				};
+			</script>
+			
 			</script>
 			
 </script>
