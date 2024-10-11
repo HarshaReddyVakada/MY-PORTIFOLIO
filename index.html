@@ -621,7 +621,6 @@ body {
 					</div>
 				</div>
 			</div>
-			
 			<div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
@@ -634,8 +633,8 @@ body {
 						<div class="modal-body">
 							<form id="questionForm">
 								<div class="form-group">
-									<label for="name">Your Number</label>
-									<input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+									<label for="number">Your Number</label>
+									<input type="text" class="form-control" id="number" placeholder="Enter your number" required>
 								</div>
 								<div class="form-group">
 									<label for="question">Your Question</label>
@@ -655,7 +654,7 @@ body {
 				document.getElementById('sendToWhatsApp').onclick = function(event) {
 					event.preventDefault();
 			
-					var name = document.getElementById('number').value;
+					var number = document.getElementById('number').value;
 					var question = document.getElementById('question').value;
 			
 					// Ensure both fields are filled before proceeding
@@ -673,8 +672,7 @@ body {
 					// Open WhatsApp link
 					window.open(whatsappLink, '_blank');
 				};
-			</script>
-			
+			</script>			
 			
 			</script>
 			
