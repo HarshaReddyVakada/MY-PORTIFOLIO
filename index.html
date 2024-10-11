@@ -634,7 +634,7 @@ body {
 						<div class="modal-body">
 							<form id="questionForm">
 								<div class="form-group">
-									<label for="name">Your Name</label>
+									<label for="name">Your Number</label>
 									<input type="text" class="form-control" id="name" placeholder="Enter your name" required>
 								</div>
 								<div class="form-group">
@@ -655,17 +655,17 @@ body {
 				document.getElementById('sendToWhatsApp').onclick = function(event) {
 					event.preventDefault();
 			
-					var name = document.getElementById('name').value;
+					var name = document.getElementById('number').value;
 					var question = document.getElementById('question').value;
 			
 					// Ensure both fields are filled before proceeding
-					if (name === "" || question === "") {
-						alert("Please fill out both the name and question.");
+					if (number === "" || question === "") {
+						alert("Please fill out both the number and question.");
 						return;
 					}
 			
 					// Format the WhatsApp message
-					var whatsappMessage = "Name: " + name + "%0AQuestion: " + question;
+					var whatsappMessage = "number: " + name + "%0AQuestion: " + question;
 			
 					// Create the WhatsApp link with YOUR number
 					var whatsappLink = "https://api.whatsapp.com/send?phone=916300293068&text=" + encodeURIComponent(whatsappMessage);
