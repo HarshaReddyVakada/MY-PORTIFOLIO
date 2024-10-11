@@ -672,17 +672,16 @@ body {
             message: question
         };
 
-        // Send the email using EmailJS
-        emailjs.send('service_16226043', 'template_yr3xowl', templateParams)
-            .then(function(response) {
-                alert('Question sent successfully!');
-                document.getElementById('questionForm').reset(); // Reset the form
-                $('#questionModal').modal('hide'); // Hide the modal
-            }, function(error) {
-                alert('Failed to send question. Please try again.');
-                console.error('Error:', error);
-            });
-    };
+		emailjs.send('service_ael49qk', 'template_nafr73g', templateParams)
+    .then(function(response) {
+        alert('Question sent successfully!');
+        document.getElementById('questionForm').reset(); // Reset the form
+        $('#questionModal').modal('hide'); // Hide the modal
+    }, function(error) {
+        alert('Failed to send question. Please try again.');
+        console.error('Error:', error);
+    });
+
 </script>
 
 
