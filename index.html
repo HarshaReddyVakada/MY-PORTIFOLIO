@@ -8,6 +8,15 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 <!-- Add in your <head> section -->
+	<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -616,78 +625,69 @@ body {
 				</div>
 			</div>
 			
-			<!-- Modal -->
-			<div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="questionModalLabel">Ask a Question</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel" aria-hidden="true">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="questionModalLabel">Ask a Question</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										<form id="questionForm">
-											<div class="form-group">
-												<label for="email">Your Email</label>
-												<input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-											</div>
-											<div class="form-group">
-												<label for="question">Your Question</label>
-												<textarea class="form-control" id="question" rows="3" placeholder="Type your question here" required></textarea>
-											</div>
-										</form>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-primary" id="sendQuestion">Send</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
-						<script>
-							(function(){
-								emailjs.init("qDojsxG67s4ZCmXnF"); // Your public API key
-							})();
-						
-							document.getElementById('sendQuestion').onclick = function(event) {
-								event.preventDefault(); // Prevent default form submission
-						
-								var email = document.getElementById('email').value;
-								var question = document.getElementById('question').value;
-						
-								// Create a template parameters object
-								var templateParams = {
-									from_email: email,
-									to_email: 'harsha9848210516@gmail.com',
-									message: question
-								};
-						
-								// Send the email
-								emailjs.send('service_16226043', 'template_yr3xowl', templateParams) // Use your actual template ID
-									.then(function(response) {
-										alert('Question sent successfully!');
-										document.getElementById('questionForm').reset(); // Reset the form
-										$('#questionModal').modal('hide'); // Hide the modal
-									}, function(error) {
-										alert('Failed to send question. Please try again.');
-										console.error('Error:', error);
-									});
-							};
-						</script>
-						
-			</div>			
+			<!-- The Modal -->
+<div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="questionModalLabel">Ask a Question</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="questionForm">
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="question">Your Question</label>
+                        <textarea class="form-control" id="question" rows="3" placeholder="Type your question here" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="sendQuestion">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+<script>
+    (function() {
+        emailjs.init("qDojsxG67s4ZCmXnF"); // Your public key
+    })();
+
+    document.getElementById('sendQuestion').onclick = function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        var email = document.getElementById('email').value;
+        var question = document.getElementById('question').value;
+
+        // Create a template parameters object
+        var templateParams = {
+            from_email: email,
+            to_email: 'harsha9848210516@gmail.com', // Your email
+            message: question
+        };
+
+        // Send the email using EmailJS
+        emailjs.send('service_16226043', 'template_yr3xowl', templateParams)
+            .then(function(response) {
+                alert('Question sent successfully!');
+                document.getElementById('questionForm').reset(); // Reset the form
+                $('#questionModal').modal('hide'); // Hide the modal
+            }, function(error) {
+                alert('Failed to send question. Please try again.');
+                console.error('Error:', error);
+            });
+    };
+</script>
+
 
  </section>
 
