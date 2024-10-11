@@ -622,65 +622,52 @@ body {
 				</div>
 			</div>
 			
-			<!-- The Modal -->
-<div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="questionModalLabel">Ask a Question</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="questionForm">
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="question">Your Question</label>
-                        <textarea class="form-control" id="question" rows="3" placeholder="Type your question here" required></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" id="sendQuestion">Send</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Include EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
-<script>
-    (function() {
-        emailjs.init("qDojsxG67s4ZCmXnF"); // Your public key
-    })();
-
-    document.getElementById('sendQuestion').onclick = function(event) {
-        event.preventDefault(); // Prevent default form submission
-
-        var email = document.getElementById('email').value;
-        var question = document.getElementById('question').value;
-
-        // Create a template parameters object
-        var templateParams = {
-            from_email: email,
-            to_email: 'harsha9848210516@gmail.com', // Your email
-            message: question
-        };
-
-		emailjs.send('service_ael49qk', 'template_nafr73g', templateParams)
-    .then(function(response) {
-        alert('Question sent successfully!');
-        document.getElementById('questionForm').reset(); // Reset the form
-        $('#questionModal').modal('hide'); // Hide the modal
-    }, function(error) {
-        alert('Failed to send question. Please try again.');
-        console.error('Error:', error);
-    });
+			<div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="questionModalLabel">Ask a Question</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="questionForm">
+								<div class="form-group">
+									<label for="phone">Your Phone Number</label>
+									<input type="text" class="form-control" id="phone" placeholder="Enter your phone number" required>
+								</div>
+								<div class="form-group">
+									<label for="message">Your Message</label>
+									<textarea class="form-control" id="message" rows="3" placeholder="Type your question here" required></textarea>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary" id="sendQuestion">Send via WhatsApp</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<script>
+				document.getElementById('sendQuestion').onclick = function() {
+					var phone = document.getElementById('phone').value;
+					var message = document.getElementById('message').value;
+					
+					// Create the WhatsApp link
+					var whatsappLink = 'https://api.whatsapp.com/send?phone=6300293068&text=' + encodeURIComponent('From: ' + phone + '\n' + message);
+			
+					// Open WhatsApp in a new tab
+					window.open(whatsappLink, '_blank');
+			
+					// Reset the form and hide the modal
+					document.getElementById('questionForm').reset();
+					$('#questionModal').modal('hide');
+				};
+			</script>			
+</script>
 
 </script>
 
