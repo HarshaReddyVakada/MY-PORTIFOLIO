@@ -655,9 +655,12 @@ body {
 				document.getElementById('sendQuestion').onclick = function() {
 					var phone = document.getElementById('phone').value;
 					var message = document.getElementById('message').value;
-					
+			
+					// Ensure the phone number includes the country code (e.g., 91 for India)
+					var fullPhoneNumber = '91' + phone; // Change '91' to your actual country code if different
+			
 					// Create the WhatsApp link
-					var whatsappLink = 'https://api.whatsapp.com/send?phone=6300293068&text=' + encodeURIComponent('From: ' + phone + '\n' + message);
+					var whatsappLink = 'https://api.whatsapp.com/send?phone=' + fullPhoneNumber + '&text=' + encodeURIComponent('From: ' + phone + '\n' + message);
 			
 					// Open WhatsApp in a new tab
 					window.open(whatsappLink, '_blank');
@@ -666,7 +669,8 @@ body {
 					document.getElementById('questionForm').reset();
 					$('#questionModal').modal('hide');
 				};
-			</script>			
+			</script>
+			
 </script>
 
 </script>
